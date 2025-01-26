@@ -22,10 +22,10 @@ env:
   AWS_REGION: ${{ vars.AWS_REGION }}
   AWS_ACCOUNT_NUMBER: ${{ vars.AWS_ACCOUNT_NUMBER }}
   #
-  organization: ${{ vars.ORGANIZATION }}
-  account: ${{ vars.ACCOUNT }}
-  environment: ${{ vars.ENVIRONMENT }}
-  workload: ${{ vars.WORKLOAD }}
+  ORGANIZATION: ${{ vars.ORGANIZATION }}
+  ACCOUNT: ${{ vars.ACCOUNT }}
+  ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+  WORKLOAD: ${{ vars.WORKLOAD }}
 
 jobs:
   terraform:
@@ -47,6 +47,10 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.10.0
+
+      - name: Show Variable in Logs
+        run: |
+          echo "O valor da variável é: $WORKLOAD"
 
       # # 3. Configurar Credenciais da AWS com Secrets do Environment
       # - name: Configure AWS Credentials
