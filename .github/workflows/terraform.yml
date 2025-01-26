@@ -32,6 +32,8 @@ jobs:
   terraform:
     name: Deploy Terraform
     runs-on: ubuntu-24.04
+    environment:
+      name: develop # Nome do ambiente configurado no GitHub
     defaults:
       run:
         shell: bash
@@ -51,7 +53,7 @@ jobs:
 
       - name: Show Variable in Logs
         run: |
-          echo "O valor da variável é: $MY_VARIABLE"
+          echo "O valor da variável é: $WORKLOAD"
 
       # # 3. Configurar Credenciais da AWS com Secrets do Environment
       # - name: Configure AWS Credentials
