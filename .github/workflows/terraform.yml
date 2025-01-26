@@ -23,9 +23,12 @@ on:
         default: 'dev'
         type: choice
         options:
-          - develop
-          - homologation
-          - production
+          - dev_macetado
+          - hml_macetado
+          - prd_macetado
+          - dev_cliente1
+          - hml_cliente1
+          - prd_cliente1
 
 env:
   # verbosity setting for Terraform logs
