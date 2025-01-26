@@ -3,7 +3,11 @@ name: Terraform Deployment
 on:
   push:
     branches:
+      # - main
       - develop
+      - feature/*
+      - release/*
+      - hotfix/*
     paths:
       - terraform/**
   pull_request:
@@ -12,6 +16,16 @@ on:
     paths:
       - terraform/**
   workflow_dispatch: # Permite disparo manual do workflow
+    inputs:
+      environment:
+        description: 'Selecione o ambiente para o deploy'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - develop
+          - homologation
+          - production
 
 env:
   # verbosity setting for Terraform logs
@@ -33,7 +47,9 @@ jobs:
     name: Deploy Terraform
     runs-on: ubuntu-24.04
     environment:
-      name: develop # Nome do ambiente configurado no GitHub
+      # name: develop # Nome do ambiente configurado no GitHub
+      # name: ${{ github.ref_name }} # Usa o nome da branch como environment
+      name: ${{ inputs.environment }}
     defaults:
       run:
         shell: bash
