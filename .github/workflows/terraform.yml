@@ -26,6 +26,7 @@ env:
   ACCOUNT: ${{ vars.ACCOUNT }}
   ENVIRONMENT: ${{ vars.ENVIRONMENT }}
   WORKLOAD: ${{ vars.WORKLOAD }}
+  MY_VARIABLE: "Hello, World!"
 
 jobs:
   terraform:
@@ -50,7 +51,7 @@ jobs:
 
       - name: Show Variable in Logs
         run: |
-          echo "O valor da variável é: $WORKLOAD"
+          echo "O valor da variável é: $MY_VARIABLE"
 
       # # 3. Configurar Credenciais da AWS com Secrets do Environment
       # - name: Configure AWS Credentials
